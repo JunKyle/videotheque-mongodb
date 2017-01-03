@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{aa.length}} articles</title>
+	</head>
+	<body>
+		<h3>Il y a {{aa.length}} articles correspondant à votre recherche:</h3>
+		<table border = 1>
+			<tr>
+				<th>Description</th>
+				<th>Prix</th>
+				<th>Date</th>
+				<th>Email</th>
+			</tr>
+			{% for a in aa %}
+				<tr>
+					<td><a href="/select?id={{a.id}}">{{a.description}}</a></td>
+					<td>{{a.prix}}</td>
+					<td>{{a.date}}</td>
+					<td>{{a.email}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

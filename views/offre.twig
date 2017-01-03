@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Article {{d.description}}</title>
+	</head>
+	<body>
+		<h3>Article {{d.description}} au prix de {{d.prix}} par {{d.email}}</h3>
+		<form action="bid">
+			<input type="hidden" name="id" value="{{d.id}}">
+			email : <input type="text" name="email"></input><br>
+			prix : <input type="number" name="prix"></input><br>
+			<input type="submit" value="Offrir">
+		</form>
+
+	</body>
+</html>

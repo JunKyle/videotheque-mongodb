@@ -1,0 +1,96 @@
+<script>
+      function filmService($http,$q){
+          this.films=null;
+
+          this.loadFromServer = function()
+          {
+              var deferred = $q.defer();
+              $http.get("get_films.php").success(function(res){
+
+                  this.films=res;
+                  deferred.resolve(res);
+
+              });
+              return deferred.promise;
+          }
+          this.store=function(tabFilms){
+              this.films=tabFilms;
+          };
+          this.get=function(idfilm){
+              var deferred = $q.defer();
+              if (this.films === null){
+                  console.log('pas de film');
+                  this.loadFromServer().then(
+                      function() {
+                          deferred.resolve(getFromId(idfilm));
+                      })
+              }
+              else
+              {
+                  console.log('on a des films');
+                  deferred.resolve(getFromId(idfilm));
+              }
+              return deferred.promise;
+          };
+          var getFromId = function (idfilm)
+          {
+              for (i in this.films)
+              {
+                  if (this.films[i].id === idfilm)
+                  {
+                      return this.films[i];
+                  }
+              }
+
+          }
+      };
+
+
+
+
+
+      var mod=angular.module("MonApplication",["ngRoute"]);
+
+      mod.controller("ctr1",function($scope,$http,filmService){
+          filmService.loadFromServer().then(function(resultat){
+              $scope.messages=resultat;
+          });
+
+      });
+      mod.controller("ctr2",function($scope,$routeParams,filmService){
+          filmService.get($routeParams.id).then(function(res) {
+              $scope.m = res;
+              }
+          );
+      });
+      mod.service("filmService",filmService);
+
+
+      mod.config(function($routeProvider){
+          $routeProvider
+              .when("/",{
+              templateUrl:"./accueil.html",
+                  controller:"ctr1"
+          })
+              .when("/film",{
+                  templateUrl:"./film.html"
+              })
+              .when("/blog",{
+              templateUrl:"blog.html"
+          })
+              .when("/contact",{
+                  templateUrl:"contact.html"
+              })
+              .when("/description/:id",{
+                      templateUrl:"./description.html",
+                      controller:"ctr2"
+                  })
+                  .otherwise(
+                      {
+                          redirectTo: "/"
+                      }
+                  );
+
+      });
+
+  </script>

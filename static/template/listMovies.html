@@ -1,0 +1,26 @@
+
+
+<div class="container" >
+	<h1>VIDEOTHEQUE</h1>
+	<!--<div class="container" ng-include="'./movieDetail.html'" ng-show="showDetail">
+		<!-- INCLUDE MOVIE DETAILS HTML -->
+	<!--</div>-->
+
+	<div class="container" ><!--ng-show="!showDetail">-->
+		<form ng-submit="retrievemoviesfromMDB();">
+			<input type="submit" value="Retrieve movies">
+		</form>
+		<h1>Liste de films</h1>
+		Recherche: <input ng-model="searchText"/>
+
+		<div class="row">
+			<div class="col-md-3" ng-repeat="movie in movies | filter : searchText as result">	
+				<p><a ng-href="#/movie/{{movie.id}}"><img ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" width="250"/></a></p>
+				<p>{{movie.original_title}}</p>
+				<p>{{movie.overview}} </p>
+			</div>
+		</div>
+
+		<span ng-if="result.length ===0">Aucun résultat</span>
+	</div>
+</div>

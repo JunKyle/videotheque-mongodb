@@ -1,0 +1,48 @@
+
+a
+{
+    color: #FFCC5C;
+    text-decoration: none;
+    transition: color 0.25s;
+}
+a:hover
+{
+    color: #FF6F69;
+}
+
+h1
+{
+    color: #00968B;
+}
+
+.col-md-3 p
+{
+    font-size: 0.75em;
+    text-align: center;
+}
+
+.standard-form
+{
+}
+.standard-form label
+{
+    /* structure */
+    display: inline-block;
+    width: 10em;
+
+    /* presentation */
+    color: #00968B;
+    text-align: right;
+}
+.standard-form ul
+{
+    /* structure */
+    padding-left: 0;
+
+    /* presentation */
+    list-style-type: none;
+}
+.standard-form ul li
+{
+    margin: 1em 0;
+}
